@@ -22,21 +22,35 @@ body {
 	margin: 0;
 }
 
+#page_container {
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #e8e7e5
+}
 #header {
 	top:0;
 	width: 100%;
 	height: 80px;
-	background-color: #999999;
+	background-color: #f9d85e;
 	box-shadow: 0 0 10px #888;
 	overflow: none;
 	position: fixed;
 }
 
+#company_logo{
+	position:fixed;
+	width: 70px;
+	left: 0;
+}
+
 #header_logo {
 	float: left;
 	padding: 0;
-	margin: 10px 0 0 10px;
+	margin: 18px 0 0 88px;
 	width: 30%;
+	color: crimson;
 }
 
 #header_links {
@@ -46,15 +60,29 @@ body {
 }
 
 #header_links ul {
+	margin:0;
 	list-style: none
 }
 
 #header_links li a {
-	width: 25%;
-	height: 100%;
+	width: 30%;
+	height: 50px;
 	top: -100;
 	float: right;
+	color: white;
 	text-decoration: none
+}
+
+#header_links a {
+	font-size: 20px;
+	width: 100%;
+	padding: 30px 0 0 30px;
+}
+
+#header_links a:hover {
+	transition: background-color 0.5s ease;
+	background-color: white;
+	color: crimson;
 }
 
 /*################ FLASHY ################*/
@@ -101,7 +129,15 @@ body {
 
 /*############ ACCOUNT PAGE ###########*/
 #user_greeting {
-	margin: 108px 0 0 20px;
+	margin: 108px 0 17px 0px;
+    padding: 8px 0 0 30px;
+    height: 46px;
+	box-shadow: 0 0 10px #888;
+	background-color: white;
+}
+
+#user_greeting h1 {
+	margin:0;
 }
 
 #left_container {
@@ -117,7 +153,9 @@ body {
     padding: 10px 0 10px 20px;
     margin: 0 0 0 20px;
     box-shadow: 0 0 10px #888;
+    border-radius: 3px;
     float: left;
+     background-color: #fffbed;
 }
 
 #account_details h3 {
@@ -138,6 +176,8 @@ body {
     height: 240px;
     box-shadow: 0 0 10px #888;
     float: left;
+    border-radius: 3px;
+     background-color: white;
 }
 
 #edit_account h3 {
@@ -150,6 +190,8 @@ body {
     padding: 10px 0 10px 20px;
     box-shadow: 0 0 10px #888;
     clear: both;
+    border-radius: 3px;
+     background-color: white;
 }
 
 #create_new_boats h3, p {
@@ -165,6 +207,8 @@ body {
 #boat_title {
 	height: 40px;
 	box-shadow: 0 0 10px #888;
+	border-radius: 3px;
+	 background-color: white;
 }
 
 #boat_title h3 {
@@ -179,6 +223,8 @@ body {
 	padding: 10px 0 10px 50px;
 	margin: 10px auto;
 	box-shadow: 0 0 10px #888;
+	border-radius: 3px;
+	 background-color: white;
 }
 
 #boat_jobs {
@@ -186,6 +232,7 @@ body {
 	margin: 10px 0 10px 0;
 	padding: 10px 0 10px 10px;
 	box-shadow: 0 0 10px #888;
+	border-radius: 3px;
 }
 
 /*########### BOAT SHOW AND EDIT ###########*/
