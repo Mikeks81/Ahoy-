@@ -1,0 +1,18 @@
+<h3>Add New Job</h3>
+<%= form_for [@boat,@job] do |f| %>
+	<%= f.label :vendor %>
+	<%= f.text_field :vendor %>
+	<%= f.label :type_of_cargo %>
+	<%= f.text_field :cargo %>
+	<%= f.label :number_of_containers %>
+	<%= f.text_field :containers %>
+	<%= f.label :price %>
+	<%= f.number_field :price %>
+	<%= f.label :origin_location %>
+	<%= f.select :origin_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %>
+	<%= f.label :destination %>
+	<%= f.select :destination, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %>
+	<%= f.label :delivery_date %>
+	<%= f.date_field :date %>
+	<%= f.submit "Create Job" %>
+<% end %>

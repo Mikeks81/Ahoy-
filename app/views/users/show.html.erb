@@ -1,0 +1,84 @@
+<div id="user_greeting">
+		<h1>Welcome, <%= @user.email %>.</h1>
+	</div>
+<div id="left_container">
+	<div id="account_details">
+		
+		<h3>Account Details</h3>
+		<div id="profile_image">
+			
+		</div>
+		<li>Name: <%= @user.name %></li>
+		<li>Email: <%= @user.email %></li>
+		<li>Company: <%= @user.company %></li>
+	</div>
+	<div id="edit_account">
+		<h3>Edit your Account Details</h3>
+		<ul>
+		<%= form_for @user do |f| %>
+			<li><%= f.label :name %>
+			<%= f.text_field :name, placeholder: @user.name %></li>
+			<li><%= f.label :company %>
+			<%= f.text_field :company, placeholder: @user.company %></li>
+			<li><%= f.label :email %>
+			<%= f.text_field :email, placeholder: @user.company %></li>
+			<li><%= f.label :password %>
+			<%= f.password_field :password %></li>
+			<li><%= f.label :profile_image %>
+			<%= f.file_field :profile_image %></li>
+			<li><%= f.submit "Update" %></li>
+		<% end %>
+		</ul>
+	</div>
+
+	<div id="create_new_boats">
+		<h3>Create New Boat</h3>
+
+		<%= form_for @boat do |f| %>
+			<p><%= f.label :name %></p>
+			<p><%= f.text_field :name %></p>
+			<p><%= f.label :max_capacity %></p>
+			<p><%= f.text_field :max_capacity %></p>			
+			<p><%= f.label :current_location %></p>
+			<p><%= f.select :current_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<p><%= f.file_field :boat_images %></p>
+			<p><%= f.submit "Create New Boat" %></p>
+		<% end %>
+	</div>
+</div>
+
+
+
+	
+	<div id="user_boats_container">
+		<div id="boat_title">
+				<h3>Your Boats</h3>
+		</div>
+				<% @boats.each do |b| %>
+		<div id="boat_box">
+				<p><%= image_tag b.boat_images %></p>
+				<p>Name: <%= b.name %></p>
+				<p>Max Capacity: <%= b.max_capacity %></p>
+				<p>Current Location: <%= b.current_location %></p>
+				<p class="user_boat_links"><%= link_to "Edit Boat", boat_path(b) %></p>
+				<p class="user_boat_links"><%= link_to "Assign Job", boat_jobs_path(b) %></p>
+				 
+				 <% b.jobs.each do |j| %>
+				  <div id="boat_jobs">
+			  		  <h4>Assigned Job:</h4>
+			  		  <p>Vendor: <%= j.vendor %></p>
+			  		  <p>Cargo:  <%= j.cargo %></p>
+			  		  <p>Origin:  <%= j.origin_location %></p>
+			  		  <p>Destination:  <%= j.destination %></p>
+			  		  <p>Delivery Date:  <%= j.date %></p>
+			  	</div>
+			   <% end %>
+		</div>
+	<% end %>
+</div>
+
+
+
+
+
+

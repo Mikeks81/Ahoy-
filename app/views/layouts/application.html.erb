@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shpping1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="flashy">
+	<% if flash[:notice] %>
+		<p><%= flash[:notice] %></p>
+	<% end %>
+</div>
+
+<div id="header">
+	<a href="/"><h1 id="header_logo">Ahoy!</h1></a>
+	<div id="header_links">
+		<% if current_user %>
+			<ul>
+				<li><%= link_to "My Account", user_path(current_user) %></li>
+				<li><%= link_to "Log Out",session_path(current_user), method: :delete %></li>
+			</ul>
+			<% else %>
+			<ul>
+				<li><%= link_to "Sign In",sessions_path %></li>
+			</ul>
+		<% end %>
+	</div>
+</div>
+
+
+<%= yield %>
+
+</body>
+</html>

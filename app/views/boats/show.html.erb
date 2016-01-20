@@ -1,0 +1,14 @@
+<h3>Update Boat</h3>
+
+<div id="update_boat">
+	<p><%= form_for @boat do |f| %></p>
+		<p><%= f.label :name %></p>
+		<p><%= f.text_field :name %></p>
+		<p><%= f.label :max_capacity %></p>
+		<p><%= f.text_field :max_capacity %></p>
+		<p><%= f.label :current_location %></p>
+		<p><%= f.select :current_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+		<p><%= f.file_field :boat_images %></p>
+		<p><%= f.submit "Update" %></p>
+	<% end %>
+</div>
