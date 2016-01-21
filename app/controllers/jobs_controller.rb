@@ -9,6 +9,7 @@ class JobsController < ApplicationController
   	@user = current_user
   	@boat = Boat.find(params[:boat_id])
   	@job = @boat.jobs.build(job_params)
+    
   	@job.save
   	redirect_to @user
   end

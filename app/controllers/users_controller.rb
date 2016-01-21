@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @boats = @user.boats
     @boat = Boat.new
-    # @job = Job.new
+    @job = Job.new
   end
 
   def update
@@ -40,6 +40,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name,:email,:company,:password,:password_confirmation)
+      params.require(:user).permit(:name,:email,:company,:password,:password_confirmation, :user_images)
     end
 end

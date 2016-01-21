@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'jobs/create'
+  post 'jobs/create' => 'jobs#create'
 
   get 'jobs/destroy'
 

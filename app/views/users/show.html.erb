@@ -6,7 +6,7 @@
 		
 		<h3>Account Details</h3>
 		<div id="profile_image">
-			
+			<%= image_tag @user.user_images %>
 		</div>
 		<li>Name: <%= @user.name %></li>
 		<li>Email: <%= @user.email %></li>
@@ -25,7 +25,7 @@
 			<li><%= f.label :password %>
 			<%= f.password_field :password %></li>
 			<li><%= f.label :profile_image %>
-			<%= f.file_field :profile_image %></li>
+			<%= f.file_field :user_images %></li>
 			<li><%= f.submit "Update" %></li>
 		<% end %>
 		</ul>
@@ -45,6 +45,28 @@
 			<p><%= f.submit "Create New Boat" %></p>
 		<% end %>
 	</div>
+
+	<div id="add_jobs">
+		<h3>Add New Job</h3>
+		<%= form_for jobs_create_path(params[:boat_id]) ,:url => url_for(:controller => 'jobs', :action => 'create') do |f| %>
+			<p><%= f.label :vendor %>
+			<%= f.text_field :vendor %></p>
+			<p><%= f.label :type_of_cargo %>
+			<%= f.text_field :cargo %></p>
+			<p><%= f.label :number_of_containers %>
+			<%= f.text_field :containers %></p>
+			<p><%= f.label :price %>
+			<%= f.number_field :price %></p>
+			<p><%= f.label :origin_location %>
+			<%= f.select :origin_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<p><%= f.label :destination %>
+			<%= f.select :destination, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<p><%= f.label :delivery_date %>
+			<%= f.date_field :date %></p>
+			<p>Assign to boat: <%= f.select :boat_id, Boat.all.collect {|b| [b.name,b.id]} %></p>
+			<p><%= f.submit  %></p>
+		<% end %>
+	</div>
 </div>
 	
 	<div id="user_boats_container">
@@ -59,17 +81,25 @@
 				<p>Current Location: <%= b.current_location %></p>
 				<p class="user_boat_links"><%= link_to "Edit Boat", boat_path(b) %></p>
 				<p class="user_boat_links"><%= link_to "Assign Job", boat_jobs_path(b) %></p>
+				<% if b.jobs == [] %>
+					<p>No Jobs Assigned to this boat</p>
+				<% else %>
+					<p class="view_jobs_button"><%= link_to "View #{b.jobs.count} Jobs", "#" %></p>
+				<% end %>
 				 
-				 <% b.jobs.each do |j| %>
-				  <div id="boat_jobs">
-			  		  <h4>Assigned Job:</h4>
-			  		  <p>Vendor: <%= j.vendor %></p>
-			  		  <p>Cargo:  <%= j.cargo %></p>
-			  		  <p>Origin:  <%= j.origin_location %></p>
-			  		  <p>Destination:  <%= j.destination %></p>
-			  		  <p>Delivery Date:  <%= j.date %></p>
-			  	</div>
-			   <% end %>
+				<div id="boat_jobs_container"> 
+					<% b.jobs.each do |j| %>
+						  <div class="boat_jobs">
+					  		  <h4>Assigned Job:</h4>
+					  		  <p>Vendor: <%= j.vendor %></p>
+					  		  <p>Cargo:  <%= j.cargo %></p>
+					  		  <p>Price: <%= j.price %></p>
+					  		  <p>Origin:  <%= j.origin_location %></p>
+					  		  <p>Destination:  <%= j.destination %></p>
+					  		  <p>Delivery Date:  <%= j.date %></p>
+					  	</div>
+					<% end %>
+				</div>
 		</div>
 	<% end %>
 </div>
