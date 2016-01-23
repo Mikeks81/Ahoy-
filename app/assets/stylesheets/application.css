@@ -27,7 +27,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: #e8e7e5
+    background-color: #e8e7e5;
 }
 #header {
 	top:0;
@@ -37,6 +37,7 @@ body {
 	box-shadow: 0 0 10px #888;
 	overflow: none;
 	position: fixed;
+	z-index: 99;
 }
 
 #company_logo{
@@ -159,11 +160,19 @@ body {
     box-shadow: 0 0 10px #888;
     border-radius: 3px;
     float: left;
-     background-color: #fffbed;
+    background-color: #fffbed;
 }
 
 #account_details h3 {
 	margin: 0;
+	width: 50%;
+	display: inline-block;
+}
+
+#edit_profile_button {
+	float:right;
+	top: 0;
+    margin-right: 20px;
 }
 
 #profile_image {
@@ -179,14 +188,16 @@ body {
 
 
 #edit_account {
-	margin: 0 10px 10px 10px;
+	position: absolute;
+    margin: 0 10px 10px 21px;
     padding: 10px 0 10px 20px;
-    width: 42%;
-    height: 240px;
+    width: 20.2%;
+    height: 239px;
     box-shadow: 0 0 10px #888;
     float: left;
     border-radius: 3px;
-     background-color: white;
+    background-color: white;
+    display: none;
 }
 
 #edit_account h3 {
@@ -194,17 +205,84 @@ body {
 }
 
 #create_new_boats {
-	width: 91%;
-    margin: 100px 10px 10px 20px;
-    padding: 10px 0 10px 20px;
+	width: 43%;
+    margin: 0px -20px 10px 13px;
+    padding: 10px 0 22px 13px;
     box-shadow: 0 0 10px #888;
-    clear: both;
+    float: left;
     border-radius: 3px;
-     background-color: white;
+    background-color: white;
 }
 
 #create_new_boats h3, p {
 	margin: 5px 0;
+}
+
+#boat_follow_container {
+	width: 91%;
+    margin: 10px 10px 10px 20px;
+    padding: 10px 0 10px 20px;
+    box-shadow: 0 0 10px #888;
+    clear: both;
+    border-radius: 3px;
+    background-color: white;
+    overflow: auto;
+}
+
+#bf_left_column {
+	width: 25%;
+	height: 250px;
+	margin: 10px;
+	padding: 5px 0 5px 0;
+	border: solid 1px #888;
+	border-radius: 5px;
+	/*box-shadow: 0 0 10px #888;*/
+	float: left;
+	overflow: scroll;
+}
+
+#f_boats_box {
+	border-radius: 3px;
+	box-shadow: 0 0 10px #888;
+	margin: 10px 0;
+	padding: 5px 5px;
+	overflow: auto;
+}
+
+#fboatsleft {
+	width:40%;
+	float: left;
+}
+
+.fboats_title {
+	font-weight: bold;
+}
+
+#fboatsleft p {
+	width: 40%;
+}
+
+#follow_button {
+	margin: 30px 10px 0 0;
+	border: 1px solid #888;
+	border-radius: 20px;
+	padding: 3px;
+	float:right;
+}
+
+#bf_right_column {
+	width: 60%;
+	height: 250px;
+	margin: 10px;
+	border: solid 1px #888;
+	border-radius: 5px;
+	float:left;
+	overflow: scroll;
+}
+
+#unf_boat_box {
+	margin: 10px 0;
+	box-shadow: 0 0 10px #888;
 }
 
 #add_jobs {
@@ -219,8 +297,9 @@ body {
 
 #user_boats_container {
 	width: 52%;
-	height: 800px;
+	height: 850px;
 	float: left;
+	overflow: scroll;
 }
 
 #boat_title {
@@ -257,8 +336,6 @@ body {
 	border-radius: 3px;
 	/*display:none;*/
 }
-
-
 
 /*########### BOAT SHOW AND EDIT ###########*/
 

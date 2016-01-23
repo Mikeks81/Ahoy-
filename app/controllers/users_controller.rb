@@ -18,10 +18,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @boats = @user.boats
-    @boat = Boat.new
-    @job = Job.new
+    if current_user
+      @user = User.find(params[:id])
+      @boats = @user.boats
+      @boat = Boat.new
+      @job = Job.new
+      @all_boats = Boat.all
+      @follow = Follow.new
+      @user_following = @user.followingboats
+    else 
+      redirect_to root_path
+    end
   end
 
   def update

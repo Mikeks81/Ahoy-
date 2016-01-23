@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
+
   post 'jobs/create' => 'jobs#create'
-
-  get 'jobs/destroy'
-
-  get 'jobs/update'
 
   root 'sessions#index'
 
@@ -25,6 +22,7 @@ Rails.application.routes.draw do
       resources :jobs
     end
     resources :sessions
+    resources :follows
 
   # Example resource route with options:
   #   resources :products do

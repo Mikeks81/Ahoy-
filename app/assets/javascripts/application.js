@@ -20,18 +20,21 @@ $(document).ready(function(){
 
 	$('.view_jobs_button').on('click',
 		function(){
-		// var clickCount = 0
-		// if (clickCount == 0){
-		// 	$('#boat_jobs_container').show(700);
-		// 	clickCount++;
-		// }
-		// else {
-		// 	$("#boat_jobs_container").hide(700);
-		// 	var clickCount = 0;
-		// }
 
-		$('#boat_jobs_container').toggle(700);
-		});
+		$(this).next().toggle(600);
+	});
 
+	$('#edit_profile_button').on('click',function(){
+
+		$('#edit_account').fadeIn(100);
+	});
+
+	$('#edit_account_submit').on('click', function(){
+		$('#edit_account').fadeOut(100);
+	});
+
+	$('#close_edit').on('click', function(){
+		$('#edit_account').fadeOut(100);
+	});
 
 });

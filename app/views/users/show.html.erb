@@ -5,12 +5,16 @@
 	<div id="account_details">
 		
 		<h3>Account Details</h3>
+		<p id="edit_profile_button"><%= link_to "Edit Profile", "#" %></p>
 		<div id="profile_image">
 			<%= image_tag @user.user_images %>
 		</div>
-		<li>Name: <%= @user.name %></li>
-		<li>Email: <%= @user.email %></li>
-		<li>Company: <%= @user.company %></li>
+		<div id="profile_details">
+			<li>Name: <%= @user.name %></li>
+			<li>Email: <%= @user.email %></li>
+			<li>Company: <%= @user.company %></li>
+		</div>
+		
 	</div>
 	<div id="edit_account">
 		<h3>Edit your Account Details</h3>
@@ -26,8 +30,9 @@
 			<%= f.password_field :password %></li>
 			<li><%= f.label :profile_image %>
 			<%= f.file_field :user_images %></li>
-			<li><%= f.submit "Update" %></li>
+			<li><%= f.submit "Update", id: "edit_account_submit" , data: {disable_with: "Submitting…"} %></li>
 		<% end %>
+		<p id="close_edit"><%= link_to "Close" , "#"%></p>
 		</ul>
 	</div>
 
@@ -44,6 +49,36 @@
 			<p><%= f.file_field :boat_images %></p>
 			<p><%= f.submit "Create New Boat" %></p>
 		<% end %>
+	</div>
+	<div id="boat_follow_container">
+		<div id="bf_left_column">
+			<% @all_boats.each do |b| %>
+						<div id="f_boats_box">
+							<div id="fboatsleft">
+								<p><span class="fboats_title">Owner:</span> <%= b.user.name %></p>
+								<p><span class="fboats_title">Boat:</span> <%= b.name %></p>
+							</div>
+							<%= form_for @follow do |f| %>
+							<%= f.hidden_field :user_id, :value => @user.id %>
+							<%= f.hidden_field :boat_id, :value => b.id %>
+							<%= f.submit "+", id: :follow_button %>
+							<% end %>
+						</div>
+			<% end %>
+		</div>
+		<div id="bf_right_column">
+			<% @user_following.each do |u| %>
+				<div id="unf_boat_box">
+					<p>Boat: <%= u.name %></p>
+					<p>Ownder <%= u.user.name %></p>
+					<%= form_for @follow do |f| %>
+						<%= f.submit "-", id: :unfollow_button, method: :delete %>
+					<% end %>
+				</div>
+			<% end %>
+
+			
+		</div>
 	</div>
 
 	<div id="add_jobs">
@@ -80,13 +115,15 @@
 				<p>Max Capacity: <%= b.max_capacity %></p>
 				<p>Current Location: <%= b.current_location %></p>
 				<p class="user_boat_links"><%= link_to "Edit Boat", boat_path(b) %></p>
+				<p class="user_boat_links"><%= link_to "Remove Boat", boat_path(b),method: :delete %></p>
 				<p class="user_boat_links"><%= link_to "Assign Job", boat_jobs_path(b) %></p>
 				<% if b.jobs == [] %>
 					<p>No Jobs Assigned to this boat</p>
 				<% else %>
-					<p class="view_jobs_button"><%= link_to "View #{b.jobs.count} Jobs", "#" %></p>
+
+				<p class="view_jobs_button"><%= link_to "View #{b.jobs.count} Jobs", "#" %></p>
 				<% end %>
-				 
+				
 				<div id="boat_jobs_container"> 
 					<% b.jobs.each do |j| %>
 						  <div class="boat_jobs">
@@ -97,6 +134,7 @@
 					  		  <p>Origin:  <%= j.origin_location %></p>
 					  		  <p>Destination:  <%= j.destination %></p>
 					  		  <p>Delivery Date:  <%= j.date %></p>
+					  		  <p><%= link_to "Remove Job", boat_job_path(b,j), method: :delete %></p>
 					  	</div>
 					<% end %>
 				</div>

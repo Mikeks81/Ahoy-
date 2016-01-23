@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :boats, dependent: :destroy
+	has_many :follows
+	has_many :followingboats, through: :follows, source: :boat
  
 	validates :email, presence: true, uniqueness: true
 

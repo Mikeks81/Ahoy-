@@ -1,6 +1,8 @@
 class Boat < ActiveRecord::Base
   belongs_to :user
   has_many :jobs, dependent: :destroy
+  has_many :follows
+  has_many :followers, through: :follows, source: :user
 
   validates :name, presence: true, uniqueness: true
   validates :max_capacity, presence: true

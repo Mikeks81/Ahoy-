@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def index
+    if current_user
+      redirect_to user_path(current_user)
+    else
   	@user = User.new
+    end
   end
 
   def create
@@ -11,7 +15,7 @@ class SessionsController < ApplicationController
   		flash[:notice] = "Welcome back #{@user.name}."
   		redirect_to @user
   	else
-  		flash[:notice] = "#{@user.errors.full_messages.first}"
+  		flash[:notice] = "Incorrect Email or Password."
   		render 'sessions/index'
   	end
   end

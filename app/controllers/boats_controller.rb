@@ -10,7 +10,7 @@ class BoatsController < ApplicationController
       redirect_to @user
     else 
       flash[:notice] = "#{@boat.errors.full_messages.first}"
-      render 'users/show'
+      redirect_to :back
     end
   end
 
@@ -34,6 +34,11 @@ class BoatsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
+    @boat = Boat.find(params[:id])
+    @boat.delete
+    flash[:notice] = "Boat Removed"
+    redirect_to @user
   end
 
   private
