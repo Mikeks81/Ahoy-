@@ -36,7 +36,7 @@ class JobsController < ApplicationController
     @user = current_user
     @boat = Boat.find(params[:boat_id])
     @job = Job.find(params[:id])
-    @job.delete
+    @job.destroy
     flash[:notice] = "Job has been deleted."
     redirect_to @user
 

@@ -51,10 +51,11 @@
 		<% end %>
 	</div>
 	<div id="boat_follow_container">
+	<h3>All Boats</h3>
+	<h3>Followed</h3>
 		<div id="bf_left_column">
 			<% @all_boats.each do |b| %>
-				<%# b.follows.each do |f| %>
-					<%# if f.user != current_user %>
+					<% if !current_user.followingboats.include?(b) %>
 							<div id="f_boats_box">
 								<div id="fboatsleft">
 									<p><span class="fboats_title">Owner:</span> <%= b.user.name %></p>
@@ -66,8 +67,7 @@
 								<%= f.submit "+", id: :follow_button %>
 								<% end %>
 							</div>
-					<%# end %>
-				<%# end %>
+					<% end %>
 			<% end %>
 		</div>
 		<div id="bf_right_column">
@@ -87,25 +87,7 @@
 	</div>
 
 	<div id="add_jobs">
-		<h3>Add New Job</h3>
-		<%= form_for jobs_create_path(params[:boat_id]) ,:url => url_for(:controller => 'jobs', :action => 'create') do |f| %>
-			<p><%= f.label :vendor %>
-			<%= f.text_field :vendor %></p>
-			<p><%= f.label :type_of_cargo %>
-			<%= f.text_field :cargo %></p>
-			<p><%= f.label :number_of_containers %>
-			<%= f.text_field :containers %></p>
-			<p><%= f.label :price %>
-			<%= f.number_field :price %></p>
-			<p><%= f.label :origin_location %>
-			<%= f.select :origin_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The_Moon", "Mars", "The_Sun"] %></p>
-			<p><%= f.label :destination %>
-			<%= f.select :destination, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The_Moon", "Mars", "The_Sun"] %></p>
-			<p><%= f.label :delivery_date %>
-			<%= f.date_field :date %></p>
-			<p>Assign to boat: <%= f.select :boat_id, Boat.all.collect {|b| [b.name,b.id]} %></p>
-			<p><%= f.submit  %></p>
-		<% end %>
+		<%#= render partial: "jobs/new", locals:{job: @job} %>
 	</div>
 </div>
 	

@@ -13,7 +13,7 @@ class FollowsController < ApplicationController
 
   def destroy
   	@follow = Follow.find(params[:id])
-  	@follow.delete
+  	@follow.destroy
   	redirect_to :back
   end
 
@@ -22,3 +22,4 @@ class FollowsController < ApplicationController
 	  	params.require(:follow).permit(:user_id, :boat_id)
 	  end 
 end
+  

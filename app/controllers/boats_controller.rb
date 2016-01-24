@@ -36,7 +36,7 @@ class BoatsController < ApplicationController
   def destroy
     @user = current_user
     @boat = Boat.find(params[:id])
-    @boat.delete
+    @boat.destroy
     flash[:notice] = "Boat Removed"
     redirect_to @user
   end

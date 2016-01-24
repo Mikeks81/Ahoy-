@@ -41,9 +41,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_user
-    @user.boats.each {|b| b.delete }
-    @user.follows.each {|f| f.delete }
-    @user.delete
+    # @user.boats.each {|b| b.delete }
+    # @user.follows.each {|f| f.delete }
+    @user.destroy
     session.clear
     redirect_to root_path
   end
