@@ -219,9 +219,9 @@ body {
 }
 
 #boat_follow_container {
-	width: 91%;
+	width: 92.7%;
     margin: 10px 10px 10px 20px;
-    padding: 10px 0 10px 20px;
+    padding: 10px 0 10px 10px;
     box-shadow: 0 0 10px #888;
     clear: both;
     border-radius: 3px;
@@ -230,12 +230,12 @@ body {
 }
 
 #bf_left_column {
-	width: 25%;
+	width: 34.5%;
 	height: 250px;
-	margin: 10px;
+	margin: 10px 3px 10px 3px ;
 	padding: 5px 0 5px 0;
 	border: solid 1px #888;
-	border-radius: 5px;
+	border-radius: 3px;
 	/*box-shadow: 0 0 10px #888;*/
 	float: left;
 	overflow: scroll;
@@ -263,26 +263,56 @@ body {
 }
 
 #follow_button {
-	margin: 30px 10px 0 0;
-	border: 1px solid #888;
-	border-radius: 20px;
-	padding: 3px;
-	float:right;
+	width: 32px;
+    margin: 30px 10px 0 0;
+    border: 1px solid #888;
+    border-radius: 20px;
+    padding: 3px;
+    font-size: 20px;
+    background: transparent;
+    float: right;
 }
 
 #bf_right_column {
 	width: 60%;
-	height: 250px;
+	height: 260px;
 	margin: 10px;
 	border: solid 1px #888;
-	border-radius: 5px;
+	border-radius: 3px;
 	float:left;
 	overflow: scroll;
 }
 
 #unf_boat_box {
 	margin: 10px 0;
+	padding: 5px;
 	box-shadow: 0 0 10px #888;
+	overflow: auto;
+}
+
+#f_boat_image {
+	width:100px;
+	float: left;
+	margin-right: 5px;
+}
+
+#unfollow_button {
+	width: 20px;
+	margin: 10px 10px 0 0;
+	border: 1px solid #888;
+	border-radius: 20px;
+	padding: 3px;
+	font-size: 18px;
+	float:right;
+	text-align: center;
+	text-decoration: none;
+
+}
+
+#unf_bb_titles {
+	width: 55%;
+	float:left;
+
 }
 
 #add_jobs {

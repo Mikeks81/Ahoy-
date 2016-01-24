@@ -12,6 +12,9 @@ class FollowsController < ApplicationController
   end
 
   def destroy
+  	@follow = Follow.find(params[:id])
+  	@follow.delete
+  	redirect_to :back
   end
 
   private

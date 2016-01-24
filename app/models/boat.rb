@@ -7,8 +7,8 @@ class Boat < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :max_capacity, presence: true
   validates :current_location, presence: true
-  validates :current_location, inclusion: { in: %w(Rome Paris Panama Brazil Trinidad Alaska The Moon Mars The Sun),
-    message: "%{value} is not a valid size" }
+  validates :current_location, inclusion: { in: %w(Rome Paris Panama Brazil Trinidad Alaska The_Moon Mars The_Sun),
+    message: "%{value} is not a valid location" }
 
 	mount_uploader :boat_images, BoatImagesUploader
 end

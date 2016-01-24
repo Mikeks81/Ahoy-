@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   post 'jobs/create' => 'jobs#create'
 
+  get 'follows/destroy' => 'follow#destroy'
+
   root 'sessions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

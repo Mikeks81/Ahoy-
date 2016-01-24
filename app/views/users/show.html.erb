@@ -45,7 +45,7 @@
 			<p><%= f.label :max_capacity %></p>
 			<p><%= f.text_field :max_capacity %></p>			
 			<p><%= f.label :current_location %></p>
-			<p><%= f.select :current_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<p><%= f.select :current_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The_Moon", "Mars", "The_Sun"] %></p>
 			<p><%= f.file_field :boat_images %></p>
 			<p><%= f.submit "Create New Boat" %></p>
 		<% end %>
@@ -53,31 +53,36 @@
 	<div id="boat_follow_container">
 		<div id="bf_left_column">
 			<% @all_boats.each do |b| %>
-						<div id="f_boats_box">
-							<div id="fboatsleft">
-								<p><span class="fboats_title">Owner:</span> <%= b.user.name %></p>
-								<p><span class="fboats_title">Boat:</span> <%= b.name %></p>
+				<%# b.follows.each do |f| %>
+					<%# if f.user != current_user %>
+							<div id="f_boats_box">
+								<div id="fboatsleft">
+									<p><span class="fboats_title">Owner:</span> <%= b.user.name %></p>
+									<p><span class="fboats_title">Boat:</span> <%= b.name %></p>
+								</div>
+								<%= form_for @follow do |f| %>
+								<%= f.hidden_field :user_id, :value => @user.id %>
+								<%= f.hidden_field :boat_id, :value => b.id %>
+								<%= f.submit "+", id: :follow_button %>
+								<% end %>
 							</div>
-							<%= form_for @follow do |f| %>
-							<%= f.hidden_field :user_id, :value => @user.id %>
-							<%= f.hidden_field :boat_id, :value => b.id %>
-							<%= f.submit "+", id: :follow_button %>
-							<% end %>
-						</div>
+					<%# end %>
+				<%# end %>
 			<% end %>
 		</div>
 		<div id="bf_right_column">
-			<% @user_following.each do |u| %>
+			<% @follows.each do |f| %>
+			<% if f.user == current_user %>
 				<div id="unf_boat_box">
-					<p>Boat: <%= u.name %></p>
-					<p>Ownder <%= u.user.name %></p>
-					<%= form_for @follow do |f| %>
-						<%= f.submit "-", id: :unfollow_button, method: :delete %>
-					<% end %>
+					<%= image_tag "#{f.boat.boat_images}", id: :f_boat_image %>
+					<div id="unf_bb_titles">
+					<p>Boat: <%= f.boat.name %></p>
+					<p>Owner: <%= f.boat.user.name %></p>
+					</div>
+					<%= link_to "-", follow_path(f), id: :unfollow_button, method: :delete %>
 				</div>
 			<% end %>
-
-			
+			<% end %>
 		</div>
 	</div>
 
@@ -93,9 +98,9 @@
 			<p><%= f.label :price %>
 			<%= f.number_field :price %></p>
 			<p><%= f.label :origin_location %>
-			<%= f.select :origin_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<%= f.select :origin_location, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The_Moon", "Mars", "The_Sun"] %></p>
 			<p><%= f.label :destination %>
-			<%= f.select :destination, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The Moon", "Mars", "The Sun"] %></p>
+			<%= f.select :destination, ["Rome","Paris","Panama","Brazil","Trinidad","Alaska","The_Moon", "Mars", "The_Sun"] %></p>
 			<p><%= f.label :delivery_date %>
 			<%= f.date_field :date %></p>
 			<p>Assign to boat: <%= f.select :boat_id, Boat.all.collect {|b| [b.name,b.id]} %></p>

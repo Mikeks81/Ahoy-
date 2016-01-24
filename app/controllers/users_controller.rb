@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       @job = Job.new
       @all_boats = Boat.all
       @follow = Follow.new
+      @follows = Follow.all
       @user_following = @user.followingboats
     else 
       redirect_to root_path
@@ -40,6 +41,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_user
+    @user.boats.each {|b| b.delete }
+    @user.follows.each {|f| f.delete }
     @user.delete
     session.clear
     redirect_to root_path
