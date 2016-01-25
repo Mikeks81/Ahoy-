@@ -1,0 +1,11 @@
+<div id="bf_right_column">
+	<% @follows.each do |f| %>
+		<div id="unf_boat_box">
+			<div id="unf_bb_titles">
+			<p>Boat: <%= f.boat.name %></p>
+			<p>Owner: <%= f.boat.user.name %></p>
+			</div>
+			<%= link_to "-", follow_path(f), id: :unfollow_button,method: :delete %>
+		</div>
+	<% end %>
+</div>
