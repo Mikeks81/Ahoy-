@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
   belongs_to :boat
 
-  validates :vendor, presence: true, uniqueness: true
+  validates :vendor, presence: true
   validates :cargo, presence: true, length: { minimum: 50 }
   validates :containers, presence: true
   validates :price, presence: true,  numericality: {greater_than_or_equal_to: 1000}
