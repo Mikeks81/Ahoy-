@@ -9,12 +9,13 @@
 </head>
 <body>
 <div id="page_container">
-	<div id="flashy">
-		<% if flash[:notice] %>
+	
+	<% if flash[:notice] %>
+		<div id="flashy">
 			<p><%= flash[:notice] %></p>
-		<% end %>
-	</div>
-
+		</div>
+	<% end %>
+	
 	<div id="header">
 		<%= image_tag("/anchor.png", id: "company_logo") %>
 		<a href="/"><h1 id="header_logo">Ahoy!</h1></a>
